@@ -88,7 +88,7 @@ body {
 }
 
 header > a,
-#root > div > h1 {
+#app > div > h1 {
   display: inline-block;
   background-image: url(http://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png);
   filter: brightness(150%);
