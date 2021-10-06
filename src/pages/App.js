@@ -1,5 +1,6 @@
 import SearchParams from '../components/SearchParams'
 
+
 const App = () => {
   const pets = [
     {
