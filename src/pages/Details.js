@@ -17,10 +17,6 @@ class Details extends Component {
     })
   }
 
-  componentDidCatch(err, info) {
-    console.error("ErrorBoundary caught an error: ", err, info)
-  }
-
   render() {
     const { animal, breed, city, state, images, description, name } = this.state
 
