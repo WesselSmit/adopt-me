@@ -1,5 +1,11 @@
 import ReactDOM from 'react-dom'
+import { StrictMode } from 'react'
 import App from './pages/App'
 
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  document.getElementById('app')
+)
