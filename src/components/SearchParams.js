@@ -28,9 +28,14 @@ const SearchParams = () => {
   const updateAnimal = e => setAnimal(e.target.value)
   const updateBreed = e => setBreed(e.target.value)
 
+  const submitForm = e => {
+    e.preventDefault()
+    requestPets()
+  }
+
   return (
     <div className="search-params">
-      <form>
+      <form onSubmit={submitForm}>
         <label htmlFor="location">
           Location
           <input
