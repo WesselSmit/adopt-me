@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import ErrorBoundary from '../components/ErrorBoundary'
 import Carousel from '../components/Carousel'
 
 
@@ -14,6 +15,10 @@ class Details extends Component {
       loading: false,
       ...data.pets[0]
     })
+  }
+
+  componentDidCatch(err, info) {
+    console.error("ErrorBoundary caught an error: ", err, info)
   }
 
   render() {
@@ -40,4 +45,15 @@ class Details extends Component {
 }
 
 
-export default withRouter(Details)
+const DetailsWithRouter = withRouter(Details)
+
+const _Details = () => {
+  return (
+    <ErrorBoundary>
+      <DetailsWithRouter />
+    </ErrorBoundary>
+  )
+}
+
+
+export default _Details
