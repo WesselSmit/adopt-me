@@ -1,14 +1,12 @@
-import { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import ThemeContext from '../contexts/ThemeContext'
+import { Provider } from 'react-redux'
+import store from '../store'
 import Details from './Details'
 import SearchParams from '../components/SearchParams'
 
 const App = () => {
-  const theme = useState('darkblue')
-
   return (
-    <ThemeContext.Provider value={theme}>
+    <Provider store={store}>
       <div>
         <Router>
           <header>
@@ -28,7 +26,7 @@ const App = () => {
           </Switch>
         </Router>
       </div>
-    </ThemeContext.Provider>
+    </Provider>
   )
 }
 

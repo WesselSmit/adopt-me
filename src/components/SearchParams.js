@@ -1,5 +1,9 @@
-import { useState, useEffect, useContext } from 'react'
-import ThemeContext from '../contexts/ThemeContext'
+import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import changeLocation from '../store/actions/changeLocation'
+import changeAnimal from '../store/actions/changeAnimal'
+import changeBreed from '../store/actions/changeBreed'
+import changeTheme from '../store/actions/changeTheme'
 import useBreedList from '../hooks/useBreedList'
 import Results from './Results'
 
@@ -8,12 +12,13 @@ const animals = ['bird', 'cat', 'dog', 'rabbit', 'reptile']
 
 
 const SearchParams = () => {
-  const [theme, setTheme] = useContext(ThemeContext)
-  const [location, setLocation] = useState('')
-  const [animal, setAnimal] = useState('')
-  const [breed, setBreed] = useState('')
+  const location = useSelector(state => state.location)
+  const animal = useSelector(state => state.animal)
+  const breed = useSelector(state => state.breed)
+  const theme = useSelector(state => state.theme)
   const [pets, setPets] = useState([])
   const [breeds] = useBreedList(animal)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     requestPets()
@@ -26,10 +31,13 @@ const SearchParams = () => {
     setPets(data.pets)
   }
 
-  const updateLocation = e => setLocation(e.target.value)
-  const updateAnimal = e => setAnimal(e.target.value)
-  const updateBreed = e => setBreed(e.target.value)
-  const updateTheme = e => setTheme(e.target.value)
+  const updateLocation = e => dispatch(changeLocation(e.target.value))
+  const updateAnimal = e => {
+    dispatch(changeBreed(''))
+    dispatch(changeAnimal(e.target.value))
+  }
+  const updateBreed = e => dispatch(changeBreed(e.target.value))
+  const updateTheme = e => dispatch(changeTheme(e.target.value))
 
   const submitForm = e => {
     e.preventDefault()
