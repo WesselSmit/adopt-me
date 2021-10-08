@@ -2,18 +2,21 @@ import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 
+let modalRoot
+
+
 const Modal = ({ children }) => {
   const elRef = useRef(null)
-  const ModalRoot = document.getElementById('modal')
+  modalRoot = modalRoot ? modalRoot : document.getElementById('modal')
 
   if (!elRef.current) {
     elRef.current = document.createElement('div')
   }
 
   useEffect(() => {
-    ModalRoot.appendChild(elRef.current)
+    modalRoot.appendChild(elRef.current)
 
-    return () => ModalRoot.removeChild(elRef.current)
+    return () => modalRoot.removeChild(elRef.current)
   }, [])
 
   return createPortal(<div>{children}</div>, elRef.current);

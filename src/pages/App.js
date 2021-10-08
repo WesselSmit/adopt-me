@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { StrictMode, useState } from 'react'
+import { Route, Switch, Link } from 'react-router-dom'
 import ThemeContext from '../contexts/ThemeContext'
 import Details from './Details'
 import SearchParams from '../components/SearchParams'
@@ -8,9 +8,9 @@ const App = () => {
   const theme = useState('darkblue')
 
   return (
-    <ThemeContext.Provider value={theme}>
-      <div>
-        <Router>
+    <StrictMode>
+      <ThemeContext.Provider value={theme}>
+        <div>
           <header>
             <Link to="/">
               <h1>Adopt me!</h1>
@@ -26,9 +26,9 @@ const App = () => {
               <SearchParams />
             </Route>
           </Switch>
-        </Router>
-      </div>
-    </ThemeContext.Provider>
+        </div>
+      </ThemeContext.Provider>
+    </StrictMode>
   )
 }
 

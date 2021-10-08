@@ -1,11 +1,11 @@
-import ReactDOM from 'react-dom'
-import { StrictMode } from 'react'
+import { hydrate } from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 import App from './pages/App'
 
 
-ReactDOM.render(
-  <StrictMode>
+hydrate(
+  <BrowserRouter>
     <App />
-  </StrictMode>,
+  </BrowserRouter>,
   document.getElementById('app')
 )
